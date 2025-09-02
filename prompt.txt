@@ -1,0 +1,6 @@
+Create a new React project with Vite that supports SSR. Use JavaScript (not TypeScript) and include Bootstrap for styling. Set up the basic project structure with separate client and server entry points.
+Configure Vite for SSR in both development and production environments. Create a simple Express server that renders the React app on the server side and sends the HTML to the client. Make sure to handle hydration correctly.
+Create a TodoList component that displays a list of todo items. Each todo should have text, a checkbox to mark as complete, and buttons to edit and delete. Also create a TodoForm component for adding new todos. Use Bootstrap for styling with a clean, responsive design.
+Implement state management for the todo app using React hooks. Include functionality to add, toggle complete status, edit, and delete todos. Make sure the state is properly synchronized between server and client rendering.
+Modify the SSR setup to handle initial data loading on the server. The todo list should be rendered with initial data on the server side, then hydrated on the client. Implement a simple storage mechanism for the server-side data.
+Configure the build process for production deployment. Create scripts to build both client and server bundles, and set up the production server to serve static assets correctly.

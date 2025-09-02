@@ -1,0 +1,6 @@
+{
+  "clientOutDir": "dist/client",
+  "serverOutFile": "dist/server/entry-server.js"
+}
+
+

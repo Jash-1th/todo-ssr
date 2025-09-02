@@ -5,6 +5,10 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
   const isSsr = Boolean(ssrBuild);
   return {
     plugins: [react()],
+    // Bundle all deps into the SSR output to avoid bare import resolution in Netlify
+    ssr: {
+      noExternal: true
+    },
     build: isSsr
       ? {
           ssr: 'src/entry-server.jsx',

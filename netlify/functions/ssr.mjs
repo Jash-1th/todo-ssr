@@ -1,12 +1,10 @@
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import serialize from 'serialize-javascript';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const projectRoot = path.resolve(__dirname, '..', '..');
+// Netlify bundles functions (often to CJS). Avoid import.meta.url; base paths on the task root.
+const taskRoot = process.env.LAMBDA_TASK_ROOT || process.cwd();
+const projectRoot = path.resolve(taskRoot);
 const clientIndex = path.join(projectRoot, 'dist', 'client', 'index.html');
 const serverEntry = path.join(projectRoot, 'dist', 'server', 'entry-server.js');
 

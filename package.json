@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node server/index.js",
-    "build": "rimraf dist && vite build && vite build --ssr src/entry-server.jsx",
+    "build": "rimraf dist && vite build && vite build --ssr src/entry-server.jsx --outDir dist/server",
     "start": "cross-env NODE_ENV=production node server/index.js"
   },
   "dependencies": {

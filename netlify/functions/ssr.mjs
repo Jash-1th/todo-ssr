@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import serialize from 'serialize-javascript';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -27,12 +28,15 @@ export async function handler(event) {
       .replace('<!--ssr-outlet-->', appHtml)
       .replace(
         '</body>',
-        `<script>window.__INITIAL_DATA__=${JSON.stringify(initialData)}</script></body>`
+        `<script>window.__INITIAL_DATA__=${serialize(initialData, { isJSON: true })}</script></body>`
       );
 
     return {
       statusCode: 200,
-      headers: { 'content-type': 'text/html' },
+      headers: {
+        'content-type': 'text/html',
+        'cache-control': 'no-store'
+      },
       body: html
     };
   } catch (e) {

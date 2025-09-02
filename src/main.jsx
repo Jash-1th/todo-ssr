@@ -135,3 +135,34 @@ export function App({ initialData }) {
 }
 
 
+export class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, info) {
+    if (typeof window !== 'undefined') {
+      // basic client-side logging; replace with real reporter in prod
+      console.error(error, info);
+    }
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="container py-4">
+          <h1 className="mb-3">Something went wrong.</h1>
+          <p>Please try again later.</p>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+

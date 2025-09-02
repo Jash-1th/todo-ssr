@@ -9,7 +9,13 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
       ? {
           ssr: 'src/entry-server.jsx',
           outDir: 'dist/server',
-          rollupOptions: { input: 'src/entry-server.jsx' }
+          rollupOptions: {
+            input: 'src/entry-server.jsx',
+            output: {
+              format: 'esm',
+              entryFileNames: 'entry-server.mjs'
+            }
+          }
         }
       : {
           outDir: 'dist/client',

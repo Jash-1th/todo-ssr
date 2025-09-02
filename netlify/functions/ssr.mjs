@@ -12,7 +12,10 @@ export async function handler(event) {
   try {
     const url = event.rawUrl || event.headers['x-nf-original-host'] || '/';
     const template = fs.readFileSync(clientIndex, 'utf-8');
-    const { render } = await import('file://' + serverEntry);
+    // Load ESM SSR bundle even when this function is bundled to CJS
+    const serverCode = fs.readFileSync(serverEntry, 'utf-8');
+    const dataUrl = 'data:text/javascript;charset=utf-8,' + encodeURIComponent(serverCode);
+    const { render } = await import(dataUrl);
 
     // Simple initial data (mirror server storage logic); replace with real data sources as needed
     const initialData = {
